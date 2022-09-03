@@ -1,0 +1,23 @@
+{
+  "name": "dynamic-quiz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zahid47/dynamic-quiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zahid47/dynamic-quiz/issues"
+  },
+  "homepage": "https://github.com/zahid47/dynamic-quiz#readme",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}
