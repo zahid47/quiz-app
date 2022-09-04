@@ -11,6 +11,7 @@ import config from "./config";
 import docsRoute from "../modules/docs/docs.route";
 import healthCheckRoute from "../modules/healthcheck/healthcheck.route";
 import userRoute from "../modules/user/user.route";
+import authRoute from "../modules/auth/auth.route";
 
 const app: Express = express();
 
@@ -32,6 +33,7 @@ app.get("/", (_req: Request, res: Response) => {
 app.use("/docs", docsRoute);
 app.use("/healthcheck", healthCheckRoute);
 app.use("/user", userRoute);
+app.use("/auth", authRoute);
 
 app.use(errorHandler);
 
