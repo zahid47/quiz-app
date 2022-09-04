@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/user.model";
+import User from "../modules/user/user.model";
 import createError from "../utils/createError";
 import { verifyToken } from "../utils/jwt";
+import config from "../utils/config";
 
 const protect = (role: "user" | "admin") => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -25,7 +26,7 @@ const protect = (role: "user" | "admin") => {
     const token = req.headers.authorization.split(" ")[1];
 
     try {
-      const access_secret: string = process.env.ACCESS_SECRET;
+      const access_secret: string = config.ACCESS_SECRET;
       const { valid, expired, payload } = verifyToken(token, access_secret);
 
       if (!valid)
