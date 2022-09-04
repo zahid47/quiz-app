@@ -8,8 +8,12 @@ const schema = Type.Object({
   CLIENT_URL: Type.String(),
   ACCESS_SECRET: Type.String(),
   REFRESH_SECRET: Type.String(),
+  EMAIL_SECRET: Type.String(),
   ACCESS_TTL: Type.String(),
   REFRESH_TTL: Type.String(),
+  EMAIL_TTL: Type.String(),
+  ETHEREAL_EMAIL: Type.String(),
+  ETHEREAL_PASSWORD: Type.String(),
 });
 
 type Env = Static<typeof schema>;
