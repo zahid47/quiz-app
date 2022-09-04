@@ -8,6 +8,7 @@ import errorHandler from "../middlewares/errorHandler";
 import limiter from "../middlewares/rateLimit";
 import config from "./config";
 
+import docsRoute from "../modules/docs/docs.route";
 import healthCheckRoute from "../modules/healthcheck/healthcheck.route";
 import userRoute from "../modules/user/user.route";
 
@@ -28,6 +29,7 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 //Routes
+app.use("/docs", docsRoute);
 app.use("/healthcheck", healthCheckRoute);
 app.use("/user", userRoute);
 
