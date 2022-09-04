@@ -3,8 +3,8 @@ import log from "./logger";
 import config from "./config";
 
 interface payloadType extends JwtPayload {
-  role?: "admin" | "user";
-  for?: "access" | "refresh" | "verify-email" | "reset-pass";
+  role?: string;
+  for?: string;
 }
 
 export const signToken = (
@@ -42,19 +42,17 @@ export const verifyToken = (token: string, secret: string) => {
 };
 
 export const generateAuthTokens = (userId: string, role: string) => {
-  try {
-    const access_secret = config.ACCESS_SECRET;
-    const refresh_secret = config.REFRESH_SECRET;
-    const access_expiry = config.ACCESS_TTL;
-    const refresh_expiry = config.REFRESH_TTL;
+  const access_secret = config.ACCESS_SECRET;
+  const refresh_secret = config.REFRESH_SECRET;
+  const access_expiry = config.ACCESS_TTL;
+  const refresh_expiry = config.REFRESH_TTL;
 
-    const accessToken = signToken(userId, access_secret, access_expiry);
-    const refreshToken = signToken(userId, refresh_secret, refresh_expiry);
+  const accessToken = signToken(userId, access_secret, access_expiry, {
+    role,
+  });
+  const refreshToken = signToken(userId, refresh_secret, refresh_expiry, {
+    role,
+  });
 
-    return { accessToken, refreshToken };
-
-    // skipcq
-  } catch (err: any) {
-    throw new Error(err);
-  }
+  return { accessToken, refreshToken };
 };
