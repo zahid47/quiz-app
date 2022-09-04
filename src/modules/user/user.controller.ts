@@ -39,7 +39,7 @@ export const createUserController = async (
     //   sendEmail(user.id, user.email, "VERIFY");
     // }
 
-    return res.status(201).json(omit(user.toJSON(), "password"));
+    return res.status(201).json(omit(user.toJSON(), ["password", "__v"]));
   } catch (err: any) {
     log.error(err);
     return next(createError(err.status, "user", err.message));
@@ -59,7 +59,7 @@ export const getUserController = async (
       return next(
         createError(404, "user", JSON.stringify({ details: "user not found" }))
       );
-    return res.status(200).json(omit(user.toJSON(), "password"));
+    return res.status(200).json(omit(user.toJSON(), ["password", "__v"]));
   } catch (err: any) {
     log.error(err);
     return next(createError(err.status, "user", err.message));
@@ -76,7 +76,7 @@ export const getUsersController = async (
     const skip = req.query.page ? parseInt(req.query.page) : 0;
 
     const _users = await findUsers(limit, skip);
-    const users = _users.map((user) => omit(user.toJSON(), "password"));
+    const users = _users.map((user) => omit(user.toJSON(), ["password", "__v"]));
 
     return res.status(200).json(users);
   } catch (err: any) {
@@ -115,7 +115,7 @@ export const updateUserController = async (
         createError(404, "user", JSON.stringify({ details: "user not found" }))
       );
 
-    return res.status(200).json(omit(user.toJSON(), "password"));
+    return res.status(200).json(omit(user.toJSON(), ["password", "__v"]));
   } catch (err: any) {
     log.error(err);
     return next(createError(err.status, "user", err.message));

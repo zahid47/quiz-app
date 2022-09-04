@@ -1,22 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { omit } from "lodash";
-import {
-  loginType,
-  refreshAccessTokenType,
-  resetPassType,
-  sendResetPassEmailType,
-} from "./auth.schema";
-import {
-  findAndUpdateUser,
-  findUserByEmail,
-  findUserById,
-} from "../user/user.service";
+import { loginType, refreshAccessTokenType } from "./auth.schema";
 import createError from "../../utils/createError";
 import { verifyToken, generateAuthTokens } from "../../utils/jwt";
 import log from "../../utils/logger";
 import refreshCookieOptions from "../../utils/refreshCookieOptions";
-import argon2 from "argon2";
-import { sendEmail } from "../../utils/sendEmail";
 import User from "../user/user.model";
 import { userDocument } from "../user/user.type";
 import config from "../../utils/config";
@@ -108,7 +96,9 @@ export const getMeController = (
   next: NextFunction
 ) => {
   try {
-    return res.status(200).json(omit(res.locals.user.toJSON(), "password"));
+    return res
+      .status(200)
+      .json(omit(res.locals.user.toJSON(), ["password", "__v"]));
   } catch (err: any) {
     log.error(err);
     return next(err);
