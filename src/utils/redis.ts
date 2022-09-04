@@ -24,7 +24,7 @@ export const getRedis = async (key: string) => {
 export const setRedis = async (
   key: string,
   value: string,
-  expire: number = 60 * 2 // expire in seconds, default 2 minutes
+  expire: number = 60 * 2 // expire in seconds, here 2 minutes
 ) => {
   const client = await redisClient();
 
