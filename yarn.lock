@@ -471,13 +471,6 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/mongodb-memory-server@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@types/mongodb-memory-server/-/mongodb-memory-server-2.3.0.tgz#da9dc2c9ab52d936d28c04d519d6a4a380c922ef"
-  integrity sha512-nveg+f78qRwudPRFVfw2flEdEkhKJIr4rSyQFKagSMb4sGhjFQi0GEKi7zKXgkKkwIlMcLthM1G93vsXgtDxGQ==
-  dependencies:
-    mongodb-memory-server "*"
-
 "@types/morgan@^1.9.3":
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/@types/morgan/-/morgan-1.9.3.tgz#ae04180dff02c437312bc0cfb1e2960086b2f540"
@@ -2421,7 +2414,7 @@ mongodb-memory-server-core@8.9.1:
     uuid "^8.3.1"
     yauzl "^2.10.0"
 
-mongodb-memory-server@*, mongodb-memory-server@^8.9.1:
+mongodb-memory-server@^8.9.1:
   version "8.9.1"
   resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-8.9.1.tgz#e5bb886c64e119993adbb5b263accf0fc427afc2"
   integrity sha512-mpAEluTwWrB4k1beL5VOX7EJzn52wmRr8ZNXRhPLlNFat4VsJzTzqBNwjoSwXuj9QxQqWDrTx18Sb36xZYawzA==
