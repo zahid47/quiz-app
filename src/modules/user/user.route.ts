@@ -5,8 +5,6 @@ import {
   deleteUserController,
   getUserController,
   getUsersController,
-  verifyEmailController,
-  sendVerificationEmailController,
 } from "./user.controller";
 import protect from "../../middlewares/protect";
 import validate from "../../middlewares/validate";
@@ -15,9 +13,7 @@ import {
   deleteUserSchema,
   getUserSchema,
   getUsersSchema,
-  sendVerificationEmailSchema,
   updateUserSchema,
-  verifyEmailSchema,
 } from "./user.schema";
 
 const router = Router();
