@@ -6,6 +6,10 @@ const schema = Type.Object({
   HOST: Type.String({ default: "0.0.0.0" }),
   DATABASE_URL: Type.String(),
   CLIENT_URL: Type.String(),
+  ACCESS_SECRET: Type.String(),
+  REFRESH_SECRET: Type.String(),
+  ACCESS_TTL: Type.String(),
+  REFRESH_TTL: Type.String(),
 });
 
 type Env = Static<typeof schema>;

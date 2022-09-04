@@ -1,8 +1,8 @@
 import JWT, { JwtPayload } from "jsonwebtoken";
-import logger from "./logger";
+import log from "./logger";
+import config from "./config";
 
 interface payloadType extends JwtPayload {
-  userId?: string;
   role?: string;
 }
 
@@ -15,7 +15,7 @@ export const signToken = (
 ) => {
   const options = {
     expiresIn: expiry,
-    issuer: "pizza-app",
+    issuer: "dynamic-quiz",
     audience: userId,
   };
   payload.role = role;
@@ -33,11 +33,34 @@ export const verifyToken = (token: string, secret: string) => {
       payload,
     };
   } catch (err: any) {
-    logger.error(err);
+    log.error(err);
     return {
       valid: false,
       expired: err.message === "jwt expired",
       payload: null,
     };
+  }
+};
+
+export const generateAuthTokens = (userId: string, role: string) => {
+  try {
+    const access_secret = config.ACCESS_SECRET;
+    const refresh_secret = config.REFRESH_SECRET;
+    const access_expiry = config.ACCESS_TTL;
+    const refresh_expiry = config.REFRESH_TTL;
+
+    const accessToken = signToken(userId, role, access_secret, access_expiry);
+    const refreshToken = signToken(
+      userId,
+      role,
+      refresh_secret,
+      refresh_expiry
+    );
+
+    return { accessToken, refreshToken };
+
+    // skipcq
+  } catch (err: any) {
+    throw new Error(err);
   }
 };
