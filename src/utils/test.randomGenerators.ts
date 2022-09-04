@@ -8,3 +8,18 @@ export const generateRandomUser = (role?: "admin") => {
     role: role,
   };
 };
+
+export const generateRandomQuestion = (numberOfOptions: number = 4) => {
+  const options = [];
+  for (let i = 0; i < numberOfOptions; i++) {
+    options.push({
+      title: faker.lorem.sentence(),
+    });
+  }
+
+  return {
+    title: faker.lorem.sentence() + "?",
+    score: 5,
+    options,
+  };
+};
