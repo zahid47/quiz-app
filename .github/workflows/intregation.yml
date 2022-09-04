@@ -25,8 +25,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: touch .env
-      - run: echo NODE_ENV="test" >> .env
       - run: npm i yarn
       - run: yarn install --frozen-lockfile
-      - run: yarn test
+      - run: yarn test-once
