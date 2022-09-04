@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import log from "../utils/logger";
-import { generateToken } from "../modules/auth/auth.service";
+import { signToken } from "../utils/jwt";
 import config from "../utils/config";
 
 const constructMsg = (
@@ -44,7 +44,9 @@ export const sendEmail = (
     },
   });
 
-  const token = generateToken(recipientId, type);
+  const token = signToken(recipientId, config.EMAIL_SECRET, config.EMAIL_TTL, {
+    for: "verify-email",
+  });
   const message = constructMsg(type, recipientEmail, token);
 
   transporter.sendMail(message, (err, info) => {
