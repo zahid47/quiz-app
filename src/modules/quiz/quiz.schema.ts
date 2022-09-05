@@ -50,6 +50,13 @@ export const updateQuizesSchema = object({
       timerDuration: number().optional(),
     }).optional(),
     questions: array(string().min(1)).optional(),
+    participants: array(
+      object({
+        user: string(),
+        attempts: number(),
+        score: number(),
+      })
+    ).optional(),
   }).strict(),
 });
 
