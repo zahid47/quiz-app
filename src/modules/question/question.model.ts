@@ -8,6 +8,7 @@ const questionSchema = new mongoose.Schema(
     options: [
       {
         title: { type: String, required: true },
+        isCorrect: { type: Boolean, required: true, default: false },
       },
     ],
   },

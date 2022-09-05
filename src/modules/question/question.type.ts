@@ -5,6 +5,7 @@ export interface questionInputType {
   score: number;
   options: {
     title: string;
+    isCorrect: boolean;
   }[];
 }
 
