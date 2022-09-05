@@ -13,6 +13,7 @@ import healthCheckRoute from "../modules/healthcheck/healthcheck.route";
 import userRoute from "../modules/user/user.route";
 import authRoute from "../modules/auth/auth.route";
 import questionRoute from "../modules/question/question.route";
+import quizRoute from "../modules/quiz/quiz.route";
 
 const app: Express = express();
 
@@ -36,6 +37,7 @@ app.use("/healthcheck", healthCheckRoute);
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
 app.use("/question", questionRoute);
+app.use("/quiz", quizRoute);
 
 app.use(errorHandler);
 
