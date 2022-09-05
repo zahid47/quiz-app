@@ -73,7 +73,6 @@ export const loginController = async (
       return next(createError(result.status, result.context, result.message));
     }
 
-    // skipcq
     const user = result.user!; //at this point we are sure that we have a user
     const { accessToken, refreshToken } = generateAuthTokens(
       user.id,
@@ -130,7 +129,6 @@ export const refreshAccessTokenController = (
       res.cookie("refreshToken", refreshToken, refreshCookieOptions);
       res.status(200).json({ accessToken, role });
 
-      // skipcq
     } catch (err: any) {
       return next(createError(401, "refresh access token", err.message));
     }

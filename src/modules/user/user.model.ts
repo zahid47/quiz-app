@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function (next) {
-  const user = this as userDocument; // skipcq
+  const user = this as userDocument;
   if (!user.isModified("password")) return next();
 
   const hash = await argon2.hash(user.password);
@@ -25,7 +25,7 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.comparePassword = async function (
   givenPassword: string
 ): Promise<boolean> {
-  const user = this as userDocument; // skipcq
+  const user = this as userDocument;
 
   try {
     if (await argon2.verify(user.password, givenPassword)) {
