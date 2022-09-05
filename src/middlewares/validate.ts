@@ -12,7 +12,6 @@ const validate =
         params: req.params,
       });
       next();
-      // skipcq
     } catch (err) {
       if (err instanceof ZodError) {
         return next(createError(400, "validate", err.message));
