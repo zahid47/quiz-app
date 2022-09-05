@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 export interface quizInputType {
   title: string;
   description: string;
-  paid: boolean;
+  isPaid: boolean;
+  price?: number;
   img: string;
   maxAttempts: number;
   timer: {
@@ -13,7 +14,11 @@ export interface quizInputType {
 }
 
 export interface quizDocument extends quizInputType, mongoose.Document {
-  participants: mongoose.Types.ObjectId[];
+  participants: {
+    user: mongoose.Schema.Types.ObjectId;
+    attempts: number;
+    score: number;
+  }[];
   questions: mongoose.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
