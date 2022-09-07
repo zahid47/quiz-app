@@ -7,9 +7,7 @@ import Quiz from "./Quiz";
 export default function Quizes() {
   const router = useRouter();
 
-  const { isLoading, error, data } = useQuery(["quizes"], () =>
-    getQuizes()
-  ) as any;
+  const { isLoading, error, data } = useQuery(["quizes"], getQuizes) as any;
 
   if (isLoading) {
     return <div>Loading...</div>;

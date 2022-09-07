@@ -4,7 +4,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 export default function Quiz({ quiz }: any) {
-  console.log(quiz);
   return (
     <tbody className="divide-y divide-gray-100">
       <tr>
@@ -21,7 +20,7 @@ export default function Quiz({ quiz }: any) {
           {quiz.participants.length}
         </td>
         <td className="p-4 text-gray-700 whitespace-normal">
-          {quiz.isPaid ? "$0" : `$${quiz.price}`}
+          {quiz.isPaid ? "Free" : `$${quiz.price}`}
         </td>
         <td className="p-4 text-gray-700 whitespace-normal">
           {quiz.timer.timerType === "perQuestion"
