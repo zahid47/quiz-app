@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import {
-  AiOutlineDashboard,
+  AiOutlineLineChart,
   AiOutlineUser,
   AiOutlineSetting,
 } from "react-icons/ai";
@@ -16,8 +16,8 @@ export default function SideBar({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const Menus = [
     {
-      title: "Dashboard",
-      icon: <AiOutlineDashboard className="text-2xl" />,
+      title: "At a Glance",
+      icon: <AiOutlineLineChart className="text-2xl" />,
       action: () => {
         router.push("/admin");
       },
@@ -69,7 +69,7 @@ export default function SideBar({ children }: { children: React.ReactNode }) {
               !open && "scale-0"
             }`}
           >
-            QuizifyLab
+            Dashboard
           </h1>
         </div>
         <ul className="pt-6">

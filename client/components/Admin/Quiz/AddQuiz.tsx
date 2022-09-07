@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Artwork from "./Artwork";
 
 export default function AddQuiz() {
   const [quiz, setQuiz] = useState<any>({
@@ -10,13 +11,7 @@ export default function AddQuiz() {
       <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
           <div className="lg:py-12 lg:col-span-2">
-            <p className="max-w-xl text-lg">Add a new Quiz</p>
-
-            <div className="mt-4">
-              <div className="mt-2 not-italic">
-                You can add unlimited number of options
-              </div>
-            </div>
+            <Artwork />
           </div>
 
           <div className="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
@@ -181,11 +176,11 @@ export default function AddQuiz() {
               </div>
 
               <button className="block bg-amber-100 text-amber-700 px-3 py-1.5 rounded text-xs font-medium hover:bg-amber-600 hover:text-white">
-                Add another option
+                Add an option
               </button>
 
               <button className="bg-teal-100 text-teal-700 px-3 py-1.5 rounded text-xs font-medium hover:bg-teal-600 hover:text-white">
-                Add another question
+                Add a question
               </button>
             </form>
           </div>

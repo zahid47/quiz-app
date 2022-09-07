@@ -1,9 +1,14 @@
 import type { NextPage } from "next";
+import Hero from "../components/Hero";
+import NavBar from "../components/NavBar";
+import Quizes from "../components/Quizes";
 
 const Home: NextPage = () => {
   return (
     <>
-      <h1>Welcome!</h1>
+      {/* <NavBar /> */}
+      <Hero/>
+      <Quizes />
     </>
   );
 };
