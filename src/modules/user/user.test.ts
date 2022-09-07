@@ -200,14 +200,14 @@ describe("user", () => {
   });
 
   describe("update user by id", () => {
-    describe("PUT /user/:id", () => {
+    describe("PATCH /user/:id", () => {
       describe("given the user is not authorized", () => {
         it("should return a 401 and not update the user", async () => {
           const user = await createUser(generateRandomUser());
           const updated = { name: "updated" };
 
           const { statusCode, body } = await request(app)
-            .put(`/user/${user._id}`)
+            .patch(`/user/${user._id}`)
             .send(updated);
 
           expect(statusCode).toBe(401);
@@ -223,7 +223,7 @@ describe("user", () => {
           const { accessToken } = generateAuthTokens(user2.id, user2.role); //logging in as user2
 
           const { statusCode, body } = await request(app)
-            .put(`/user/${user1._id}`) //but trying to update user1's profile
+            .patch(`/user/${user1._id}`) //but trying to update user1's profile
             .set("Authorization", `Bearer ${accessToken}`)
             .send(update);
 
@@ -241,7 +241,7 @@ describe("user", () => {
           const { accessToken } = generateAuthTokens(user.id, user.role);
 
           const { statusCode } = await request(app)
-            .put(`/user/${user._id}`)
+            .patch(`/user/${user._id}`)
             .set("Authorization", `Bearer ${accessToken}`) //sending an access token with the request so that the user is authorized
             .send(update);
 
@@ -257,7 +257,7 @@ describe("user", () => {
           const { accessToken } = generateAuthTokens(user.id, user.role);
 
           const { statusCode, body } = await request(app)
-            .put(`/user/${user._id}`)
+            .patch(`/user/${user._id}`)
             .set("Authorization", `Bearer ${accessToken}`) //sending an access token with the request so that the user is authorized
             .send(update);
 

@@ -21,7 +21,7 @@ const router = Router();
 router
   .route("/:id")
   .get(validate(getQuizSchema), getQuizController)
-  .put(
+  .patch(
     validate(updateQuizesSchema),
     protect("admin"),
     updateQuizController

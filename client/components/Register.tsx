@@ -1,16 +1,43 @@
-import React from "react";
+import { addUser } from "../utils/userApi";
+import { useState, MouseEvent } from "react";
+import { useRouter } from "next/router";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Register() {
+  const [creds, setCreds] = useState({});
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
+  const mutation = useMutation(addUser, {
+    onSuccess: () => {
+      router.push(`/login?registered=true`);
+    },
+    onError: (error: any) => {
+      console.log(error);
+      setError(
+        error.response.data.message[0].message || error.response.data.message
+      );
+    },
+  });
+
+  const handleSubmit = (e: MouseEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    mutation.mutate(creds);
+    setLoading(false);
+  };
+
   return (
     <div>
       <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
         <div className="max-w-lg mx-auto text-center">
-          <h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">
+            Create a new Account
+          </h1>
 
-          <p className="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
-          </p>
+          <p className="mt-4 text-rose-500 font-medium">{error}</p>
         </div>
 
         <form action="" className="max-w-md mx-auto mt-8 mb-0 space-y-4">
@@ -24,6 +51,7 @@ export default function Register() {
                 type="name"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 placeholder="Enter name"
+                onChange={(e) => setCreds({ ...creds, name: e.target.value })}
               />
 
               <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -55,6 +83,7 @@ export default function Register() {
                 type="email"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 placeholder="Enter email"
+                onChange={(e) => setCreds({ ...creds, email: e.target.value })}
               />
 
               <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -85,6 +114,9 @@ export default function Register() {
                 type="password"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 placeholder="Enter password"
+                onChange={(e) =>
+                  setCreds({ ...creds, password: e.target.value })
+                }
               />
 
               <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -115,16 +147,18 @@ export default function Register() {
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               Already have an account?&nbsp;
-              <a className="underline" href="/register">
+              <a className="underline" href="/login">
                 Sign in
               </a>
             </p>
 
             <button
+              onClick={handleSubmit}
+              disabled={loading}
               type="submit"
               className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-teal-500 rounded-lg"
             >
-              Register
+              {loading ? "Loading..." : "Register"}
             </button>
           </div>
         </form>

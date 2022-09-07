@@ -33,7 +33,7 @@ router
 router
   .route("/:id")
   .get(protect("admin"), validate(getUserSchema), getUserController)
-  .put(protect("user"), validate(updateUserSchema), updateUserController)
+  .patch(protect("user"), validate(updateUserSchema), updateUserController)
   .delete(protect("user"), validate(deleteUserSchema), deleteUserController);
 
 export default router;
