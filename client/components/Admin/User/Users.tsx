@@ -1,7 +1,14 @@
+import { getUsers } from "../../../utils/userApi";
 import SideBar from "../SideBar";
 import User from "./User";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Users() {
+  const { isLoading, error, data } = useQuery(["users"], getUsers) as any;
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <SideBar>
       <div>
@@ -38,7 +45,9 @@ export default function Users() {
               </tr>
             </thead>
 
-            <User />
+            {data.map((user: any) => {
+              return <User key={user.id} user={user} />;
+            })}
           </table>
         </div>
       </div>
