@@ -1,9 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { getQuizes } from "../../../utils/quizApi";
 import SideBar from "../SideBar";
 import Quiz from "./Quiz";
 
 export default function Quizes() {
   const router = useRouter();
+
+  const { isLoading, error, data } = useQuery(["quizes"], () =>
+    getQuizes()
+  ) as any;
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const quizes: any[] = data.data;
 
   return (
     <SideBar>
@@ -43,6 +59,9 @@ export default function Quizes() {
                   <div className="flex items-center">Timer</div>
                 </th>
                 <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+                  <div className="flex items-center">Reveal Answer</div>
+                </th>
+                <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
                   <div className="flex items-center">Last update</div>
                 </th>
                 <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
@@ -51,7 +70,9 @@ export default function Quizes() {
               </tr>
             </thead>
 
-            <Quiz />
+            {quizes.map((quiz: any) => (
+              <Quiz key={quiz._id} quiz={quiz} />
+            ))}
           </table>
         </div>
       </div>

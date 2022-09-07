@@ -1,20 +1,39 @@
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
-export default function Quiz() {
+export default function Quiz({ quiz }: any) {
+  console.log(quiz);
   return (
     <tbody className="divide-y divide-gray-100">
       <tr>
         <td className="p-4 font-medium text-gray-900 whitespace-normal">
-          fh4i7y3iy4kltik3h4oiuo
+          {quiz._id}
         </td>
         <td className="p-4 font-medium text-gray-900 whitespace-normal">
-          Are you a real duck???
+          {quiz.title}
         </td>
-        <td className="p-4 text-gray-700 whitespace-normal">10</td>
-        <td className="p-4 text-gray-700 whitespace-normal">69</td>
-        <td className="p-4 text-gray-700 whitespace-normal">$15</td>
-        <td className="p-4 text-gray-700 whitespace-normal">60 sec/ques</td>
-        <td className="p-4 text-gray-700 whitespace-normal">10 hours ago</td>
+        <td className="p-4 text-gray-700 whitespace-normal">
+          {quiz.questions.length}
+        </td>
+        <td className="p-4 text-gray-700 whitespace-normal">
+          {quiz.participants.length}
+        </td>
+        <td className="p-4 text-gray-700 whitespace-normal">
+          {quiz.isPaid ? "$0" : `$${quiz.price}`}
+        </td>
+        <td className="p-4 text-gray-700 whitespace-normal">
+          {quiz.timer.timerType === "perQuestion"
+            ? `${quiz.timer.timerDuration} sec/question`
+            : `${quiz.timer.timerDuration} sec/quiz`}
+        </td>
+        <td className="p-4 text-gray-700 whitespace-normal">
+          {quiz.answerRevealType}
+        </td>
+        <td className="p-4 text-gray-700 whitespace-normal">
+          {dayjs(quiz.updatedAt).fromNow()}
+        </td>
         <td className="p-4 text-gray-700 whitespace-nowrap">
           <button className=" hover:bg-sky-600 hover:text-white bg-sky-100 text-sky-600 px-3 py-1.5 rounded text-xs font-medium">
             <AiFillEdit />
