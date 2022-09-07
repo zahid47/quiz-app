@@ -20,20 +20,24 @@ const quizSchema = new mongoose.Schema(
       { type: mongoose.Schema.Types.ObjectId, ref: "Question", min: 1 },
     ],
     timer: {
-      timerType: { type: String, required: true, default: "none" }, // none, perQuestion, perQuiz
+      timerType: {
+        type: String,
+        required: true,
+        enum: ["perQuestion", "perQuiz"],
+        default: "perQuestion",
+      },
       timerDuration: { type: Number, required: true, default: 60 }, // in seconds
+    },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    answerRevealType: {
+      type: String,
+      required: true,
+      enum: ["After each question", "After each attempt", "After all attempts"],
+      default: "After all attempts",
     },
   },
   { timestamps: true }
 );
-
-// quizSchema.pre("update", async function (next) {
-//   const quiz = this as quizDocument;
-//   if (!quiz.isModified("isPaid")) return next();
-
-//   quiz.price = quiz.isPaid ? quiz.price : 0;
-//   return next();
-// });
 
 const Quiz = mongoose.model<quizDocument>("Quiz", quizSchema);
 export default Quiz;
