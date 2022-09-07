@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "./Assets/Logo";
 
 export default function NavBar() {
   return (
@@ -8,7 +9,7 @@ export default function NavBar() {
           <div className="flex-1 md:flex md:items-center md:gap-12">
             <a className="block text-grey-600 font-medium" href="/">
               <span className="sr-only">Home</span>
-              <h1>QuizifyLab</h1>
+              <Logo/>
             </a>
           </div>
 
@@ -21,7 +22,7 @@ export default function NavBar() {
                 Header navigation
               </h2>
 
-              <ul className="flex items-center text-sm gap-6">
+              <ul className="flex items-center text-md gap-6">
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Artwork from "./Artwork";
+import Artwork from "../../Assets/Artwork";
 
 export default function AddQuiz() {
   const [quiz, setQuiz] = useState<any>({
