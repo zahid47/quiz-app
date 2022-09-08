@@ -19,6 +19,9 @@ export const createQuizSchema = object({
       )
     ),
     createdBy: string({ required_error: "createdBy is required" }),
+    answerRevealType: string({
+      required_error: "answerRevealType is required",
+    }),
   }).strict(),
 });
 
@@ -52,6 +55,7 @@ export const updateQuizesSchema = object({
     }).optional(),
     questions: array(string().min(1)).optional(),
     participants: array(string()).optional(),
+    answerRevealType: string().optional(),
   }).strict(),
 });
 

@@ -11,6 +11,10 @@ export interface quizInputType {
     timerType: "perQuestion" | "perQuiz";
     timerDuration: number;
   };
+  answerRevealType:
+    | "After each question"
+    | "After each attempt"
+    | "After all attempts";
 }
 
 export interface quizDocument extends quizInputType, mongoose.Document {
@@ -20,7 +24,10 @@ export interface quizDocument extends quizInputType, mongoose.Document {
   }[];
   questions: mongoose.Types.ObjectId[];
   createdBy: mongoose.Types.ObjectId;
-  answerRevealType: "After each question" | "After each attempt" | "After all attempts";
+  answerRevealType:
+    | "After each question"
+    | "After each attempt"
+    | "After all attempts";
   createdAt: Date;
   updatedAt: Date;
 }
