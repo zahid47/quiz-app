@@ -76,7 +76,9 @@ export const getUsersController = async (
     const skip = req.query.page ? parseInt(req.query.page) : 0;
 
     const _users = await findUsers(limit, skip);
-    const users = _users.map((user) => omit(user.toJSON(), ["password", "__v"]));
+    const users = _users.map((user) =>
+      omit(user.toJSON(), ["password", "__v"])
+    );
 
     return res.status(200).json(users);
   } catch (err: any) {
@@ -103,8 +105,8 @@ export const updateUserController = async (
 
     // can't update email to a duplicate email
     if (update.email) {
-      const isDuplicateEmail = await findUserByEmail(update.email);
-      if (isDuplicateEmail)
+      const user = await findUserByEmail(update.email);
+      if (user && user.id !== id)
         return next(createError(409, "email", "email already exists"));
     }
 
