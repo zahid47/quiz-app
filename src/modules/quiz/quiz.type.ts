@@ -17,7 +17,6 @@ export interface quizDocument extends quizInputType, mongoose.Document {
   participants: {
     user: mongoose.Schema.Types.ObjectId;
     attempts: number;
-    score: number;
   }[];
   questions: mongoose.Types.ObjectId[];
   createdBy: mongoose.Types.ObjectId;

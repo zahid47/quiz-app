@@ -18,6 +18,7 @@ export const createQuizSchema = object({
         "at least one question is required"
       )
     ),
+    createdBy: string({ required_error: "createdBy is required" }),
   }).strict(),
 });
 
@@ -50,13 +51,7 @@ export const updateQuizesSchema = object({
       timerDuration: number().optional(),
     }).optional(),
     questions: array(string().min(1)).optional(),
-    participants: array(
-      object({
-        user: string(),
-        attempts: number(),
-        score: number(),
-      })
-    ).optional(),
+    participants: array(string()).optional(),
   }).strict(),
 });
 

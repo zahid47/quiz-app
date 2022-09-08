@@ -9,13 +9,7 @@ const quizSchema = new mongoose.Schema(
     price: { type: Number, required: true, default: 0 },
     img: { type: String, required: true },
     maxAttempts: { type: Number, required: true, default: 1, min: 1 },
-    participants: [
-      {
-        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        attempts: { type: Number, default: 0 },
-        score: { type: Number, default: 0 },
-      },
-    ],
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     questions: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Question", min: 1 },
     ],
@@ -28,7 +22,11 @@ const quizSchema = new mongoose.Schema(
       },
       timerDuration: { type: Number, required: true, default: 60 }, // in seconds
     },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     answerRevealType: {
       type: String,
       required: true,

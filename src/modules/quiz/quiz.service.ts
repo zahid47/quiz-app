@@ -11,7 +11,11 @@ export const findQuizById = async (id: string) => {
 };
 
 export const findQuizes = async (limit: number, skip: number) => {
-  return await Quiz.find().populate("questions").limit(limit).skip(skip);
+  return await Quiz.find()
+    .populate("questions")
+    .populate("createdBy", "name")
+    .limit(limit)
+    .skip(skip);
 };
 
 export const findAndUpdateQuiz = async (
