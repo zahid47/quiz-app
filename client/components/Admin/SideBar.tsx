@@ -91,7 +91,7 @@ export default function SideBar({ children }: { children: React.ReactNode }) {
         </ul>
       </div>
       <div className="h-screen flex-1 p-7">
-        <h1 className="text-2xl font-semibold ">{children}</h1>
+        <div className="text-2xl font-semibold ">{children}</div>
       </div>
     </div>
   );

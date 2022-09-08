@@ -1,25 +1,20 @@
-import axios from "axios";
+import axios from "./axios";
 import Cookies from "js-cookie";
-
-const userApi = axios.create({
-  baseURL: "http://localhost:8000",
-});
 
 export const getUsers = async () => {
   const accessToken = Cookies.get("accessToken");
-  if (!accessToken) return;
-  const response = await userApi.get("/user", {
+
+  return await axios.get(`/user`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-  return response.data;
 };
 
 export const getMe = async () => {
   const accessToken = Cookies.get("accessToken");
-  if (!accessToken) return;
-  return await userApi.get(`/auth/me`, {
+
+  return await axios.get(`/auth/me`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -28,41 +23,38 @@ export const getMe = async () => {
 
 export const getUser = async (id: any) => {
   const accessToken = Cookies.get("accessToken");
-  if (!accessToken) return;
 
-  return await userApi.get(`/user/${id}`, {
+  return await axios.get(`/user/${id}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
 };
 
-export const loginUser = async (user: any) => {
-  return await userApi.post(`/auth/login`, user);
+export const loginUser = async (creds: any) => {
+  return await axios.post(`/auth/login`, creds);
 };
 
 export const addUser = async (user: any) => {
-  return await userApi.post("/user", user);
+  return await axios.post("/user", user);
 };
 
-export const updateUser = async ({ id, user }: any) => {
+export const updateUser = async (id: string, updates: any) => {
   const accessToken = Cookies.get("accessToken");
-  if (!accessToken) return;
-  return await userApi.patch(`/user/${id}`, user, {
+
+  return await axios.patch(`/user/${id}`, updates, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
 };
 
-export const deleteUser = async (user: any) => {
+export const deleteUser = async (id: string) => {
   const accessToken = Cookies.get("accessToken");
-  if (!accessToken) return;
-  return await userApi.delete(`/user/${user._id}`, {
+
+  return await axios.delete(`/user/${id}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
 };
-
-export default userApi;

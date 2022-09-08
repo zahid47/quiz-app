@@ -13,7 +13,7 @@ export default function Quiz({ quiz }: any) {
           <div>
             <h5 className="text-xl font-bold text-gray-900">{quiz.title}</h5>
             <p className="mt-1 text-xs font-medium text-gray-600">
-              By {"Admin"}
+              By {quiz.createdBy.name}
             </p>
           </div>
 
@@ -34,14 +34,14 @@ export default function Quiz({ quiz }: any) {
 
         <dl className="flex mt-6">
           <div className="flex flex-col-reverse">
-            <dt className="text-sm font-medium text-gray-600">Questions</dt>
+            <dt className="text-sm font-medium text-gray-600">Question(s)</dt>
             <dd className="text-xs text-gray-500">{quiz.questions.length}</dd>
           </div>
 
           <div className="flex flex-col-reverse ml-3 sm:ml-6">
-            <dt className="text-sm font-medium text-gray-600">Participants</dt>
+            <dt className="text-sm font-medium text-gray-600">Participant(s)</dt>
             <dd className="text-xs text-gray-500">
-              {quiz.participants.length}
+              {new Set(quiz.participants).size}
             </dd>
           </div>
 
@@ -57,7 +57,7 @@ export default function Quiz({ quiz }: any) {
           <div className="flex flex-col-reverse ml-3 sm:ml-6">
             <dt className="text-sm font-medium text-gray-600">Price</dt>
             <dd className="text-xs text-gray-500">
-              {quiz.isPaid ? "Free" : `$${quiz.price}`}
+              {quiz.isPaid ? `$${quiz.price}` : "Free"}
             </dd>
           </div>
         </dl>

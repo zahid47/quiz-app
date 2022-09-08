@@ -1,43 +1,32 @@
-import { updateUser, getUser } from "../../../utils/userApi";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { updateUser } from "../../../utils/userApi";
 
-export default function Register() {
-  const [user, setUser] = useState({});
+export default function Edit({ user }: any) {
+  const [userState, setUserState] = useState<any>(user);
   const [loading, setLoading] = useState(false);
-  const [_error, _setError] = useState(false);
-
+  const [error, setError] = useState(false);
   const router = useRouter();
-  const { id } = router.query;
 
-  const mutation = useMutation(updateUser, {
-    onSuccess: () => {
-      router.push("/admin/users");
-    },
-    onError: () => {
-      _setError(true);
-    },
-  });
+  // useEffect(() => {
+  //   setUserState(user);
+  //   // eslint-disable-next-line
+  // }, []);
 
-  const handleSubmit = (e: MouseEvent) => {
+  const handleEdit = async (e: MouseEvent) => {
     e.preventDefault();
     setLoading(true);
-    mutation.mutate({ id, user });
+    try {
+      await updateUser(user._id, {
+        name: userState.name,
+        email: userState.email,
+      });
+      router.push("/admin/users");
+    } catch {
+      setError(true);
+    }
     setLoading(false);
   };
-
-  const { isLoading, error, data } = useQuery(["user"], () =>
-    getUser(id)
-  ) as any;
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   return (
     <div>
@@ -47,15 +36,15 @@ export default function Register() {
         </div>
 
         <form action="" className="max-w-md mx-auto mt-8 mb-0 space-y-4">
-          <div className={_error ? "" : "hidden"}>
-          <div
-            className="p-4 border rounded text-rose-700 bg-rose-50 border-rose-900/10"
-            role="alert"
-          >
-            <strong className="text-sm font-medium">
-              Error updating user
-            </strong>
-          </div>
+          <div className={error ? "" : "hidden"}>
+            <div
+              className="p-4 border rounded text-rose-700 bg-rose-50 border-rose-900/10"
+              role="alert"
+            >
+              <strong className="text-sm font-medium">
+                Error updating user
+              </strong>
+            </div>
           </div>
 
           <div>
@@ -67,8 +56,10 @@ export default function Register() {
               <input
                 type="name"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder={data?.data.name}
-                onChange={(e) => setUser({ ...user, name: e.target.value })}
+                value={userState?.name}
+                onChange={(e) =>
+                  setUserState({ ...userState, name: e.target.value })
+                }
               />
             </div>
           </div>
@@ -81,16 +72,18 @@ export default function Register() {
             <div className="relative">
               <input
                 type="email"
-                placeholder={data?.data.email}
+                value={userState?.email}
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                onChange={(e) =>
+                  setUserState({ ...userState, email: e.target.value })
+                }
               />
             </div>
           </div>
 
           <div className="flex justify-center">
             <button
-              onClick={handleSubmit}
+              onClick={handleEdit}
               disabled={loading}
               type="submit"
               className="flex-grow inline-block px-5 py-3 text-sm font-medium text-white bg-teal-500 rounded-lg hover:bg-teal-600"

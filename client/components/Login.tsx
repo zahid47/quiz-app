@@ -1,43 +1,45 @@
-import { loginUser } from "../utils/userApi";
-import { useState, MouseEvent } from "react";
+import { loginUser, getMe } from "../utils/userApi";
+import { MouseEvent, useState } from "react";
 import { useRouter } from "next/router";
-import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import jwt_decode from "jwt-decode";
+import useUserStore from "../context/userStore";
 
 export default function Login() {
   const router = useRouter();
   const { registered } = router.query;
-
   const [creds, setCreds] = useState({});
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const mutation = useMutation(loginUser, {
-    onSuccess: (response: any) => {
-      const accessToken = response.data.accessToken;
-      Cookies.set("accessToken", accessToken);
-      const decoded = jwt_decode(accessToken) as any;
-      const isAdmin = decoded.role === "admin";
-      if (isAdmin) {
-        router.push("/admin");
-      } else {
-        router.push("/");
-      }
-    },
-    onError: (error: any) => {
-      setError(
-        error.response.data.message[0].message || error.response.data.message
-      );
-    },
-  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<any>();
+  const { setUser } = useUserStore();
 
   const handleLogin = async (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
     setLoading(true);
-    mutation.mutate(creds);
+
+    try {
+      const response = await loginUser(creds);
+
+      const accessToken = response.data.accessToken;
+      Cookies.set("accessToken", accessToken);
+
+      const me = await getMe();
+
+      setUser(me.data);
+
+      const isAdmin = me.data.role === "admin";
+
+      if (isAdmin) {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
+    } catch (error: any) {
+      setError(
+        error.response.data.message[0].message || error.response.data.message
+      );
+    }
     setLoading(false);
   };
 

@@ -20,7 +20,7 @@ export default function Quiz({ quiz }: any) {
           {quiz.participants.length}
         </td>
         <td className="p-4 text-gray-700 whitespace-normal">
-          {quiz.isPaid ? "Free" : `$${quiz.price}`}
+          {quiz.isPaid ? `$${quiz.price}` : "Free"}
         </td>
         <td className="p-4 text-gray-700 whitespace-normal">
           {quiz.timer.timerType === "perQuestion"

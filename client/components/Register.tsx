@@ -1,30 +1,28 @@
 import { addUser } from "../utils/userApi";
 import { useState, MouseEvent } from "react";
 import { useRouter } from "next/router";
-import { useMutation } from "@tanstack/react-query";
 
 export default function Register() {
+  const router = useRouter();
   const [creds, setCreds] = useState({});
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
+  const handleRegister = async (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    e.preventDefault();
+    setLoading(true);
 
-  const mutation = useMutation(addUser, {
-    onSuccess: () => {
-      router.push(`/login?registered=true`);
-    },
-    onError: (error: any) => {
+    try {
+      await addUser(creds);
+      router.push("/login?registered=true");
+
+    } catch (error: any) {
       setError(
         error.response.data.message[0].message || error.response.data.message
       );
-    },
-  });
-
-  const handleSubmit = (e: MouseEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    mutation.mutate(creds);
+    }
     setLoading(false);
   };
 
@@ -152,7 +150,7 @@ export default function Register() {
             </p>
 
             <button
-              onClick={handleSubmit}
+              onClick={handleRegister}
               disabled={loading}
               type="submit"
               className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-teal-500 rounded-lg"
