@@ -12,7 +12,7 @@ export default function User({ user }: any) {
   };
 
   const handleEdit = async () => {
-    router.push(`/admin/users/${user._id}`);
+    router.push(`/admin/users/${user._id}/edit`);
   };
 
   return (

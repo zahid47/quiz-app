@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import Edit from "../../../components/Admin/User/Edit";
-import axios from "../../../utils/axios";
+import Edit from "../../../../components/Admin/User/Edit";
+import axios from "../../../../utils/axios";
 
 export default function edit({ user }: any) {
   return <Edit user={user}/>;
