@@ -23,7 +23,7 @@ router
   .get(validate(getQuizSchema), getQuizController)
   .patch(
     validate(updateQuizesSchema),
-    protect("admin"),
+    protect("user"),
     updateQuizController
   )
   .delete(
