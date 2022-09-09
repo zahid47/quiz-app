@@ -37,13 +37,6 @@ export default function SideBar({ children }: { children: React.ReactNode }) {
       },
     },
     {
-      title: "Settings",
-      icon: <AiOutlineSetting className="text-2xl" />,
-      action: () => {
-        router.push("/admin/settings");
-      },
-    },
-    {
       title: "Collapse",
       icon: open ? (
         <TbLayoutSidebarLeftCollapse className="text-2xl" />
