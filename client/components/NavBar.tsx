@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import useUserStore from "../context/userStore";
@@ -42,12 +43,12 @@ export default function NavBar() {
                 {Cookies.get("accessToken") && userState.name ? (
                   <ul className="flex items-center text-sm gap-6">
                     <li>
-                      <a
+                      <Link
                         className="text-gray-500 transition hover:text-gray-500/75"
                         href="/account"
                       >
                         {userState.name}
-                      </a>
+                      </Link>
                     </li>
 
                     <li>
@@ -62,14 +63,14 @@ export default function NavBar() {
                 ) : (
                   <ul className="flex items-center text-md gap-6">
                     <li>
-                      <a
+                      <button
                         className="cursor-pointer bg-teal-100 text-teal-700 transition hover:bg-teal-600 hover:text-white block px-3 py-1.5 rounded text-xs font-medium"
                         onClick={() => {
                           router.push("/login");
                         }}
                       >
                         Login
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 )}

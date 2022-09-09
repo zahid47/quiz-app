@@ -1,6 +1,7 @@
 import { addUser } from "../utils/userApi";
 import { useState, MouseEvent } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Register() {
   const router = useRouter();
@@ -144,9 +145,9 @@ export default function Register() {
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               Already have an account?&nbsp;
-              <a className="underline" href="/login">
+              <Link className="underline" href="/login">
                 Sign in
-              </a>
+              </Link>
             </p>
 
             <button

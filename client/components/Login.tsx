@@ -3,6 +3,7 @@ import { MouseEvent, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import useUserStore from "../context/userStore";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -139,9 +140,9 @@ export default function Login() {
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               No account?&nbsp;
-              <a className="underline" href="/register">
+              <Link className="underline" href="/register">
                 Sign up
-              </a>
+              </Link>
             </p>
 
             <button
