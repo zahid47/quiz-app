@@ -5,9 +5,8 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import User from "../user/user.model";
 import { createUser } from "../user/user.service";
 import { generateRandomUser } from "../../utils/test.randomGenerators";
-import { generateAuthTokens, signToken } from "../../utils/jwt";
+import { generateAuthTokens } from "../../utils/jwt";
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import config from "../../utils/config";
 
 describe("auth", () => {
   beforeAll(async () => {
@@ -128,54 +127,6 @@ describe("auth", () => {
 
           expect(statusCode).toBe(200);
           expect(body.accessToken).toBeDefined();
-        });
-      });
-    });
-  });
-
-  describe.skip("reset-pass/:code", () => {
-    describe("GET /auth/reset-pass/:code", () => {
-      describe("given no code is provided", () => {
-        it("should return a 400", async () => {
-          const { statusCode } = await request(app).post(`/auth/reset-pass/`);
-
-          expect(statusCode).toBe(400);
-        });
-      });
-
-      describe("given no new password provided", () => {
-        it("should return a 400", async () => {
-          const user = await createUser(generateRandomUser());
-          const code = signToken(
-            user.id,
-            config.EMAIL_SECRET,
-            config.EMAIL_TTL,
-            { for: " reset-pass" }
-          );
-
-          const { statusCode } = await request(app).post(
-            `/auth/reset-pass/${code}`
-          );
-
-          expect(statusCode).toBe(400);
-        });
-      });
-
-      describe("given code and new password is provided", () => {
-        it("should return a 200 and change the password", async () => {
-          const user = await createUser(generateRandomUser());
-          const code = signToken(
-            user.id,
-            config.EMAIL_SECRET,
-            config.EMAIL_TTL,
-            { for: " reset-pass" }
-          );
-
-          const { statusCode } = await request(app)
-            .post(`/auth/reset-pass/${code}`)
-            .send({ password: "newPassword" });
-
-          expect(statusCode).toBe(200);
         });
       });
     });
