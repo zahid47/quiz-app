@@ -1,4 +1,4 @@
-<div align="center"><img src="logo.png" alt="logo" width="200" height="auto" /></div>
+<div align="center"><img src="logo.svg" alt="logo" width="600" height="auto" /></div>
 
 # Dynamic Quiz
 
