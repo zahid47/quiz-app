@@ -1,5 +1,18 @@
+import { GetServerSideProps } from "next";
 import Attempt from "../../../components/Attempt";
+import { getQuiz } from "../../../utils/quizApi";
 
-export default function AttemptPage() {
-  return <Attempt />;
+export default function AttemptPage({ quiz }: any) {
+  return <Attempt quiz={quiz} />;
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params as any;
+  const { data } = await getQuiz(id);
+
+  return {
+    props: {
+      quiz: data,
+    },
+  };
+};

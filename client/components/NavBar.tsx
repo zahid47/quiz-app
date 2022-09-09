@@ -39,7 +39,7 @@ export default function NavBar() {
                   Header navigation
                 </h2>
 
-                {userState?.name ? (
+                {Cookies.get("accessToken") && userState.name ? (
                   <ul className="flex items-center text-sm gap-6">
                     <li>
                       <a

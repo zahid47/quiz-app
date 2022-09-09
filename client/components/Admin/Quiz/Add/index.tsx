@@ -21,7 +21,7 @@ export default function AddQuiz() {
 
   const { quiz, setQuiz } = useQuizStore();
 
-  const [error, setError] = useState<string>("");
+  const [error, _setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
 

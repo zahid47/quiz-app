@@ -1,21 +1,27 @@
-import React from "react";
+import { useState } from "react";
 
-export default function Option() {
+export default function Option({ option, answer, setAnswer }: any) {
+  const [checked, setChecked] = useState(false);
+
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <input
-        className="hidden group peer"
+        checked={checked}
+        onChange={() => {
+          setChecked(!checked);
+          setAnswer({ ...answer, [option._id]: !checked });
+        }}
         type="checkbox"
         name="option"
-        value="option"
-        id="option"
+        value={option.title}
+        id={option._id}
       />
 
       <label
-        className="block p-4 text-sm font-medium border border-gray-100 rounded-lg cursor-pointer transition-colors shadow-sm peer-checked:border-blue-500 hover:bg-gray-50 peer-checked:ring-1 peer-checked:ring-blue-500"
-        htmlFor="option"
+        className="ml-4 flex-grow p-4 text-sm font-medium border rounded-lg cursor-pointer transition-colors shadow-sm hover:bg-gray-50"
+        htmlFor={option._id}
       >
-        Regularly
+        {option.title}
       </label>
     </div>
   );

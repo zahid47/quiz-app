@@ -5,6 +5,7 @@ import useUserStore from "../context/userStore";
 import { updateQuiz } from "../utils/quizApi";
 
 export default function QuizDetails({ quiz }: any) {
+  console.log(quiz);
   const { user } = useUserStore();
   const [noOfAttempts, setNoOfAttempts] = useState(0);
   const router = useRouter();

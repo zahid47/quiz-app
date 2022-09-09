@@ -18,11 +18,11 @@ export default function Confirm() {
     clearQuiz();
     setLoading(false);
 
-    router.push("/admin/quizes");
+    router.push("/admin");
   };
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
-      <h1 className="text-2xl font-bold mb-4">Confirm Quiz</h1>
+      <h1 className="text-2xl font-bold mb-4">You are about to create a new quiz</h1>
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="flex flex-col items-center justify-center w-full h-full">
           <h1 className="text-xl font-bold mb-4">Quiz Title</h1>
