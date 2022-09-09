@@ -5,6 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
     "build": "tsc",
     "test": "vitest",
     "test-once": "vitest run",
