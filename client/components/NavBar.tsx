@@ -28,10 +28,10 @@ export default function NavBar() {
         <div className="px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-1 md:flex md:items-center md:gap-12">
-              <a className="block text-grey-600 font-medium" href="/">
+              <Link className="block text-grey-600 font-medium" href="/">
                 <span className="sr-only">Home</span>
                 <Logo />
-              </a>
+              </Link>
             </div>
 
             <div className="md:flex md:items-center md:gap-12">
