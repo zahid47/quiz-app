@@ -1,6 +1,6 @@
 //TODO: split it into smaller components
 
-import axios from "../../../utils/axios";
+import axios from "axios";
 import { useState, MouseEvent } from "react";
 import Artwork from "../../Assets/Artwork";
 import { addQuestion } from "../../../utils/quesApi";
@@ -30,10 +30,13 @@ export default function Add() {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "dynamic-quiz");
-    data.append("cloud_name", "pizza47");
 
     const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_ENDPOINT!;
-    const response = await axios.post(endpoint, data);
+    const response = await axios.post(endpoint, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return response.data.url;
   };
 

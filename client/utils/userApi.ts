@@ -1,5 +1,4 @@
 import axios from "./axios";
-import axiosPrivate from "./axiosPrivate";
 import Cookies from "js-cookie";
 
 export const getUsers = async () => {
@@ -43,7 +42,7 @@ export const addUser = async (user: any) => {
 export const updateUser = async (id: string, updates: any) => {
   const accessToken = Cookies.get("accessToken");
 
-  return await axiosPrivate.patch(`/user/${id}`, updates, {
+  return await axios.patch(`/user/${id}`, updates, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
