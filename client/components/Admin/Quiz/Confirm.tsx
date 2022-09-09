@@ -13,8 +13,7 @@ export default function Confirm() {
     e.preventDefault();
 
     setLoading(true);
-    const { data } = await addQuiz(quiz);
-    console.log(data);
+    await addQuiz(quiz);
     clearQuiz();
     setLoading(false);
 

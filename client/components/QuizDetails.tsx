@@ -5,9 +5,9 @@ import useUserStore from "../context/userStore";
 import { updateQuiz } from "../utils/quizApi";
 
 export default function QuizDetails({ quiz }: any) {
-  console.log(quiz);
   const { user } = useUserStore();
   const [noOfAttempts, setNoOfAttempts] = useState(0);
+  const [canView, setCanView] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,12 +32,32 @@ export default function QuizDetails({ quiz }: any) {
     router.push(`/quizes/${quiz._id}/attempt`);
   };
 
-  const viewAnswers = async (
+  const viewAnswers = (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
     router.push(`/quizes/${quiz._id}/answer`);
   };
+
+  useEffect(() => {
+    const getCanView = (): boolean => {
+      if (
+        quiz.answerRevealType === "After each question" ||
+        quiz.answerRevealType === "After each attempt"
+      ) {
+        return quiz.participants.includes(user._id);
+      } else {
+        if (quiz.maxAttempts <= noOfAttempts) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    setCanView(getCanView());
+
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <section>
@@ -137,10 +157,8 @@ export default function QuizDetails({ quiz }: any) {
                 </div>
                 <div className="flex mt-4">
                   <button
-                    // FIXME
-                    disabled={true}
+                    disabled={!canView}
                     onClick={viewAnswers}
-                    type="submit"
                     className="inline-flex items-center justify-center w-full px-5 py-3 border border-teal-600 text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg sm:w-auto disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-gray-600"
                   >
                     <span className="font-medium"> View Answers </span>

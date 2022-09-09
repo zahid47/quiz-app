@@ -10,18 +10,9 @@ export default function Add() {
   const router = useRouter();
   const { user } = useUserStore();
 
-  // const [quiz, setQuiz] = useState<any>({
-  //   isPaid: false,
-  //   answerRevealType: "After each question",
-  //   timer: {
-  //     timerType: "Per Question",
-  //     timerDuration: 60,
-  //   },
-  // });
-
   const { quiz, setQuiz } = useQuizStore();
 
-  const [error, _setError] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
 
@@ -116,6 +107,7 @@ export default function Add() {
       setQuiz({ ...quiz, img, questions: quesIds, createdBy: user._id });
       router.push("/admin/quizes/add/confirm");
     } catch {
+      setError("Something went wrong!");
     } finally {
       setLoading(false);
     }

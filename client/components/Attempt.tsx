@@ -1,17 +1,36 @@
 import Option from "./Option";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 export default function Attempt({ quiz }: any) {
-  // console.log(quiz);
   const router = useRouter();
   const [idx, setIdx] = useState(0);
   const [answer, setAnswer] = useState<any>({});
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [timer, setTimer] = useState(quiz.timer.timerDuration);
 
-  const handleNextQuestion = (e: MouseEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer > 0) {
+        setTimer((prev: number) => prev - 1);
+      } else {
+        if (quiz.timer.timerType === "Per Question") {
+          handleNextQuestion();
+          setTimer(quiz.timer.timerDuration);
+        } else {
+          setFinished(true);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
+  const handleNextQuestion = (e?: MouseEvent) => {
+    if (e) e.preventDefault();
     const totalQuestions = quiz.questions.length;
 
     const isCorrect = quiz.questions[idx].options.every(
@@ -34,7 +53,7 @@ export default function Attempt({ quiz }: any) {
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-4xl font-bold text-center">Your score is {score}</h1>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
+        className="mb=4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mb-4"
         onClick={() => router.push("/")}
       >
         Go Home
@@ -49,14 +68,12 @@ export default function Attempt({ quiz }: any) {
               <h1 className="text-2xl font-bold inline">
                 {quiz.questions[idx].title}
               </h1>
-              <h2>{score}</h2>
+              {/* <h2>{score}</h2> */}
 
               <strong className="inline-flex items-center border border-gray-200 rounded relative px-2.5 py-1.5 text-md font-medium">
                 <span className="text-gray-700"> Time Left: </span>
 
-                <span className="font-bold text-green-700 ml-1.5">
-                  {quiz.timer?.timerDuration}
-                </span>
+                <span className="font-bold text-green-700 ml-1.5">{timer}</span>
               </strong>
             </div>
             <h1 className="text-gray-500 text-md font-normal inline">
