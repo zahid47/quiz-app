@@ -32,11 +32,7 @@ export default function Add() {
     data.append("upload_preset", "dynamic-quiz");
 
     const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_ENDPOINT!;
-    const response = await axios.post(endpoint, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await axios.post(endpoint, data);
     return response.data.url;
   };
 
