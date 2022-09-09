@@ -23,7 +23,10 @@ export default function Login() {
       const response = await loginUser(creds);
 
       const accessToken = response.data.accessToken;
-      Cookies.set("accessToken", accessToken);
+      Cookies.set("accessToken", accessToken, { expires: 7 });
+
+      const refreshToken = response.data.refreshToken;
+      Cookies.set("refreshToken", refreshToken, { expires: 365 });
 
       const me = await getMe();
 
