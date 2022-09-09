@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   AiOutlineLineChart,
   AiOutlineUser,
-  AiOutlineSetting,
 } from "react-icons/ai";
 import { MdOutlineQuiz } from "react-icons/md";
 import {
@@ -16,7 +15,7 @@ export default function SideBar({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const Menus = [
     {
-      title: "At a Glance",
+      title: "Stats",
       icon: <AiOutlineLineChart className="text-2xl" />,
       action: () => {
         router.push("/admin");

@@ -1,3 +1,6 @@
+//TODO: refactor
+
+import Cookies from "js-cookie";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useState } from "react";
@@ -23,6 +26,14 @@ export default function QuizDetails({ quiz }: any) {
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
+
+    const accessToken = Cookies.get("accessToken");
+    console.log(accessToken);
+
+    if (!accessToken && !(user.name)) {
+      router.push("/login");
+      return;
+    }
 
     const updates = {
       participants: [...quiz.participants, user._id],

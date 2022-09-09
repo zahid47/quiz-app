@@ -1,6 +1,7 @@
 import Option from "./Option";
 import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useState } from "react";
+import Results from "./Assets/Results";
 
 export default function Attempt({ quiz }: any) {
   const router = useRouter();
@@ -50,8 +51,11 @@ export default function Attempt({ quiz }: any) {
   };
 
   return finished ? (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold text-center">Your score is {score}</h1>
+    <div className="flex flex-col items-center justify-center h-screen gap-8">
+      <div>
+        <Results />
+      </div>
+      <h1 className="text-4xl font-bold text-center">Your Score is {score}</h1>
       <button
         className="mb=4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mb-4"
         onClick={() => router.push("/")}

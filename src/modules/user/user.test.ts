@@ -77,39 +77,7 @@ describe("user", () => {
 
   describe("get users", () => {
     describe("GET /user", () => {
-      describe("given user is not authenticated", () => {
-        it("should return a 401", async () => {
-          await createUser(generateRandomUser());
-          await createUser(generateRandomUser());
-          await createUser(generateRandomUser());
-
-          const { statusCode } = await request(app).get(`/user`);
-
-          expect(statusCode).toBe(401);
-        });
-      });
-
-      describe("given the user is not an admin", () => {
-        it("should return a 403", async () => {
-          const normalUser = await createUser(generateRandomUser());
-          const { accessToken } = generateAuthTokens(
-            normalUser.id,
-            normalUser.role
-          );
-
-          await createUser(generateRandomUser());
-          await createUser(generateRandomUser());
-          await createUser(generateRandomUser());
-
-          const { statusCode } = await request(app)
-            .get(`/user`)
-            .set("Authorization", `Bearer ${accessToken}`);
-
-          expect(statusCode).toBe(403);
-        });
-      });
-
-      describe("given an admin is authenticated and some users exist", () => {
+      describe("given an user is authenticated and some users exist", () => {
         it("should return a 200 and less than or equal to 'limit' number of users", async () => {
           const adminUser = await createUser(generateRandomUser("admin"));
           const { accessToken } = generateAuthTokens(
@@ -135,16 +103,6 @@ describe("user", () => {
 
   describe("get user by id", () => {
     describe("GET /user/:id", () => {
-      describe("given user is not authenticated", () => {
-        it("should return a 401", async () => {
-          const user = await createUser(generateRandomUser());
-
-          const { statusCode } = await request(app).get(`/user/${user._id}`);
-
-          expect(statusCode).toBe(401);
-        });
-      });
-
       describe("given the user is not an admin", () => {
         it("should return a 403", async () => {
           const normalUser = await createUser(generateRandomUser());
@@ -324,30 +282,6 @@ describe("user", () => {
           const { statusCode } = await request(app).get(`/user/orders`);
 
           expect(statusCode).toBe(401);
-        });
-      });
-    });
-  });
-
-  describe.skip("verify email", () => {
-    describe("GET /user/verify/:code", () => {
-      describe("given the code is valid", () => {
-        it("should return a 200 and verify the email of that user", async () => {
-          const user = await createUser(generateRandomUser());
-          const code = signToken(
-            user.id,
-            config.EMAIL_SECRET,
-            config.EMAIL_TTL,
-            {
-              for: "verify-email",
-            }
-          );
-          const { statusCode } = await request(app).get(`/user/verify/${code}`);
-
-          const verifiedUser = await findUserById(user.id);
-
-          expect(statusCode).toBe(200);
-          expect(verifiedUser?.verified).toBe(true);
         });
       });
     });

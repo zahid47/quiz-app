@@ -21,7 +21,7 @@ const router = Router();
 router
   .route("/")
   .post(validate(createUserSchema), createUserController)
-  .get(protect("admin"), validate(getUsersSchema), getUsersController);
+  .get(validate(getUsersSchema), getUsersController);
 
 // router
 //   .route("/verify/:code")

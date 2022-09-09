@@ -1,3 +1,5 @@
+//TODO: split it into smaller components
+
 import axios from "../../../utils/axios";
 import { useState, MouseEvent } from "react";
 import Artwork from "../../Assets/Artwork";
