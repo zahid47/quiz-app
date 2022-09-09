@@ -22,7 +22,7 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({ origin: config.CLIENT_URL }));
-// app.use(limiter);
+app.use(limiter);
 if (process.env.NODE_ENV !== "test") {
   app.use(morgan("dev"));
 }
