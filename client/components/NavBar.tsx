@@ -29,7 +29,6 @@ export default function NavBar() {
           <div className="flex items-center justify-between h-16">
             <div className="flex-1 md:flex md:items-center md:gap-12">
               <Link className="block text-grey-600 font-medium" href="/">
-                <span className="sr-only">Home</span>
                 <Logo />
               </Link>
             </div>

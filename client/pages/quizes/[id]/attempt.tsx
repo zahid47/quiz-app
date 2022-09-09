@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import Attempt from "../../../components/Attempt";
 import { getQuiz } from "../../../utils/quizApi";
 
-export default function AttemptPage({ quiz }: any) {
+export default function attempt({ quiz }: any) {
   return <Attempt quiz={quiz} />;
 }
 

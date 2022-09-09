@@ -1,12 +1,12 @@
-import axios from "../../../../utils/axios";
+import axios from "../../../utils/axios";
 import { useState, MouseEvent } from "react";
-import Artwork from "../../../Assets/Artwork";
-import { addQuestion } from "../../../../utils/quesApi";
+import Artwork from "../../Assets/Artwork";
+import { addQuestion } from "../../../utils/quesApi";
 import { useRouter } from "next/router";
-import useUserStore from "../../../../context/userStore";
-import useQuizStore from "../../../../context/quizStore";
+import useUserStore from "../../../context/userStore";
+import useQuizStore from "../../../context/quizStore";
 
-export default function AddQuiz() {
+export default function Add() {
   const router = useRouter();
   const { user } = useUserStore();
 

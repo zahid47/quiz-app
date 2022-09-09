@@ -1,4 +1,4 @@
-import Confirm from "../../../../components/Admin/Quiz/Add/confirm";
+import Confirm from "../../../../components/Admin/Quiz/Confirm";
 
 export default function confirm() {
   return <Confirm />;

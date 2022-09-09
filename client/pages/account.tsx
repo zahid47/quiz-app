@@ -1,5 +1,5 @@
-import Account from "../components/Account";
+// import Account from "../components/Account";
 
 export default function account() {
-  return <Account />;
+  return <h1>ACCOUNT</h1>;
 }

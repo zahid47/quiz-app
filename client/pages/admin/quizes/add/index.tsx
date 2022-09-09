@@ -1,5 +1,5 @@
-import AddQuiz from "../../../../components/Admin/Quiz/Add/index";
+import Add from "../../../../components/Admin/Quiz/Add";
 
-export default function Add() {
-  return <AddQuiz />;
+export default function add() {
+  return <Add />;
 }

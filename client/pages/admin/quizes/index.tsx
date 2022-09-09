@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import Quizes from "../../../components/Admin/Quiz/Quizes";
 import { getQuizes } from "../../../utils/quizApi";
 
-export default function QuizList({ quizes }: any) {
+export default function quizes({ quizes }: any) {
   return <Quizes quizes={quizes} />;
 }
 

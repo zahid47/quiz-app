@@ -2,7 +2,7 @@ import Users from "../../../components/Admin/User/Users";
 import { GetServerSideProps } from "next";
 import axios from "../../../utils/axios";
 
-export default function UsersList({ users }: any) {
+export default function users({ users }: any) {
   return <Users users={users} />;
 }
 
