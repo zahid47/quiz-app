@@ -11,7 +11,7 @@ export default function User({ user }: any) {
     router.push("/admin/users");
   };
 
-  const handleEdit = async () => {
+  const handleEdit = () => {
     router.push(`/admin/users/${user._id}/edit`);
   };
 

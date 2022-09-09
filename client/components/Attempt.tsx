@@ -11,25 +11,6 @@ export default function Attempt({ quiz }: any) {
   const [finished, setFinished] = useState(false);
   const [timer, setTimer] = useState(quiz.timer.timerDuration);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (timer > 0) {
-        setTimer((prev: number) => prev - 1);
-      } else {
-        if (quiz.timer.timerType === "Per Question") {
-          handleNextQuestion();
-          setTimer(quiz.timer.timerDuration);
-        } else {
-          setFinished(true);
-        }
-      }
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  });
-
   const handleNextQuestion = (e?: MouseEvent) => {
     if (e) e.preventDefault();
     const totalQuestions = quiz.questions.length;
@@ -49,6 +30,25 @@ export default function Attempt({ quiz }: any) {
       setFinished(true);
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (timer > 0) {
+        setTimer((prev: number) => prev - 1);
+      } else {
+        if (quiz.timer.timerType === "Per Question") {
+          handleNextQuestion();
+          setTimer(quiz.timer.timerDuration);
+        } else {
+          setFinished(true);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return finished ? (
     <div className="flex flex-col items-center justify-center h-screen gap-8">

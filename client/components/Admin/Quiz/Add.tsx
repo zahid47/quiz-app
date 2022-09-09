@@ -99,7 +99,7 @@ export default function Add() {
       setLoading(true);
       const img = await uploadImage(image);
 
-      let quesIds = [];
+      const quesIds = [];
 
       for (const question of questions) {
         const { data } = await addQuestion(question);

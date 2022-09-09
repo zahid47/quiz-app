@@ -13,7 +13,7 @@ export default function Quiz({ quiz }: any) {
     router.push("/admin/quizes");
   };
 
-  const handleEdit = async () => {
+  const handleEdit = () => {
     router.push(`/admin/quizes/${quiz._id}/edit`);
   };
 

@@ -12,7 +12,6 @@ const axiosPrivate = axios.create({
 
 const privateInterceptor = axiosPrivate.interceptors.request.use(
   async (req) => {
-    console.log("interceptor ran");
 
     const accessToken = Cookies.get("accessToken");
     const refreshToken = Cookies.get("refreshToken");
@@ -21,7 +20,6 @@ const privateInterceptor = axiosPrivate.interceptors.request.use(
       const response = await axios.get(
         `http://localhost:8000/auth/refresh/${refreshToken}`
       );
-      console.log("refeshed!");
       Cookies.set("accessToken", response.data.accessToken);
       return req;
     }
@@ -36,7 +34,6 @@ const privateInterceptor = axiosPrivate.interceptors.request.use(
     const response = await axios.get(
       `http://localhost:8000/auth/refresh/${refreshToken}`
     );
-    console.log("refeshed!");
     Cookies.set("accessToken", response.data.accessToken);
     return req;
   },

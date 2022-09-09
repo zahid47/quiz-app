@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useEffect } from "react";
+import { useState, MouseEvent } from "react";
 import { useRouter } from "next/router";
 import { updateUser } from "../../../utils/userApi";
 

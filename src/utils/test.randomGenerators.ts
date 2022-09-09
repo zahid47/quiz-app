@@ -9,7 +9,7 @@ export const generateRandomUser = (role?: "admin") => {
   };
 };
 
-export const generateRandomQuestion = (numberOfOptions: number = 4) => {
+export const generateRandomQuestion = (numberOfOptions: number) => {
   const options = [];
   for (let i = 0; i < numberOfOptions; i++) {
     options.push({

@@ -28,7 +28,6 @@ export default function QuizDetails({ quiz }: any) {
     e.preventDefault();
 
     const accessToken = Cookies.get("accessToken");
-    console.log(accessToken);
 
     if (!accessToken && !(user.name)) {
       router.push("/login");

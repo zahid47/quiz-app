@@ -12,7 +12,7 @@ export const connectToDb = async () => {
   }
 };
 
-export const disconnectFromDb = async () => {
+export const disconnectFromDb = () => {
   return mongoose.connection.close(false, () => {
     log.info("MongoDB disconnected");
   });

@@ -7,8 +7,7 @@ import { createUser, findUserById } from "./user.service";
 import { generateRandomUser } from "../../utils/test.randomGenerators";
 import { reverseString } from "../../utils/test.reverseString";
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { generateAuthTokens, signToken } from "../../utils/jwt";
-import config from "../../utils/config";
+import { generateAuthTokens } from "../../utils/jwt";
 
 describe("user", () => {
   beforeAll(async () => {

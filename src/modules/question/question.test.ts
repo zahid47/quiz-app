@@ -3,7 +3,6 @@ import app from "../../utils/app";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import config from "../../utils/config";
 import Question from "./question.model";
 import {
   generateRandomQuestion,

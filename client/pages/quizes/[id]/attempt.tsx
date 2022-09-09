@@ -7,7 +7,7 @@ export default function attempt({ quiz }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params as any;
+  const id = context.params?.id as string;
   const { data } = await getQuiz(id);
 
   return {

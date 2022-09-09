@@ -1,4 +1,3 @@
-import axios from "../../utils/axios";
 import { GetServerSideProps } from "next";
 import SideBar from "../../components/Admin/SideBar";
 import { getQuizes } from "../../utils/quizApi";
