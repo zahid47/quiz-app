@@ -1,3 +1,5 @@
+<div align="center"><img src="logo.png" alt="logo" width="200" height="auto" /></div>
+
 # Dynamic Quiz
 
 ![CodeQl](https://github.com/zahid47/dynamic-quiz/actions/workflows/codeql.yml/badge.svg)
