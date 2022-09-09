@@ -93,7 +93,7 @@ export default function QuizDetails({ quiz }: any) {
                       {new Set(quiz.participants).size} Participant(s)
                     </strong>
                     <strong className="mb-4 mr-3 inline-flex items-center border border-amber-500 text-amber-500 bg-amber-100 uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
-                      {quiz.timer?.timerType === "perQuestion"
+                      {quiz.timer?.timerType === "Per Question"
                         ? `${quiz.timer?.timerDuration} sec/ques`
                         : `${quiz.timer?.timerDuration} sec/quiz`}
                     </strong>

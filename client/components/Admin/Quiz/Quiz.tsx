@@ -36,7 +36,7 @@ export default function Quiz({ quiz }: any) {
           {quiz.isPaid ? `$${quiz.price}` : "Free"}
         </td>
         <td className="p-4 text-gray-700 whitespace-normal">
-          {quiz.timer.timerType === "perQuestion"
+          {quiz.timer.timerType === "Per Question"
             ? `${quiz.timer.timerDuration} sec/question`
             : `${quiz.timer.timerDuration} sec/quiz`}
         </td>

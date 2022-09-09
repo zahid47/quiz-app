@@ -8,10 +8,6 @@ export default function Edit({ user }: any) {
   const [error, setError] = useState(false);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   setUserState(user);
-  //   // eslint-disable-next-line
-  // }, []);
 
   const handleEdit = async (e: MouseEvent) => {
     e.preventDefault();

@@ -48,7 +48,7 @@ export default function Quiz({ quiz }: any) {
           <div className="flex flex-col-reverse ml-3 sm:ml-6">
             <dt className="text-sm font-medium text-gray-600">Timer</dt>
             <dd className="text-xs text-gray-500">
-              {quiz.timer.timerType === "perQuestion"
+              {quiz.timer.timerType === "Per Question"
                 ? `${quiz.timer.timerDuration} sec/ques`
                 : `${quiz.timer.timerDuration} sec/quiz`}
             </dd>
