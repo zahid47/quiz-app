@@ -16,6 +16,7 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     status,
     context,
     message,
+    err,
     // stack: err.stack || "",
   });
 };

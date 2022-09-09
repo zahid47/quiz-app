@@ -8,9 +8,10 @@ export interface quizInputType {
   img: string;
   maxAttempts: number;
   timer: {
-    timerType: "perQuestion" | "perQuiz";
+    timerType: "Per Question" | "Per Quiz";
     timerDuration: number;
   };
+  questions?: mongoose.Types.ObjectId[];
   answerRevealType:
     | "After each question"
     | "After each attempt"
@@ -22,7 +23,6 @@ export interface quizDocument extends quizInputType, mongoose.Document {
     user: mongoose.Schema.Types.ObjectId;
     attempts: number;
   }[];
-  questions: mongoose.Types.ObjectId[];
   createdBy: mongoose.Types.ObjectId;
   answerRevealType:
     | "After each question"

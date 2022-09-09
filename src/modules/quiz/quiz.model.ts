@@ -17,8 +17,8 @@ const quizSchema = new mongoose.Schema(
       timerType: {
         type: String,
         required: true,
-        enum: ["perQuestion", "perQuiz"],
-        default: "perQuestion",
+        enum: ["Per Question", "Per Quiz"],
+        default: "Per Question",
       },
       timerDuration: { type: Number, required: true, default: 60 }, // in seconds
     },
