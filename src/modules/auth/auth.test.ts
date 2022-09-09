@@ -113,7 +113,7 @@ describe("auth", () => {
         it("should return a 400", async () => {
           const { statusCode } = await request(app).get(`/auth/refresh`);
 
-          expect(statusCode).toBe(400);
+          expect(statusCode).toBe(404);
         });
       });
 
@@ -123,7 +123,7 @@ describe("auth", () => {
           const { refreshToken } = generateAuthTokens(user.id, user.role);
 
           const { statusCode, body } = await request(app).get(
-            `/auth/refresh?refreshToken=${refreshToken}`
+            `/auth/refresh/${refreshToken}`
           );
 
           expect(statusCode).toBe(200);

@@ -10,7 +10,7 @@ export const loginSchema = object({
 });
 
 export const refreshAccessTokenSchema = object({
-  query: object({
+  params: object({
     refreshToken: string({ required_error: "refreshToken is required" }),
   }),
 });

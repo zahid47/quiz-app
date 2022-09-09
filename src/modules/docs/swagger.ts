@@ -13,6 +13,8 @@ const docs = {
     },
   ],
   tags: [{ name: "user" }],
+
+  //TODO: finish the docs
 };
 
 export default docs;

@@ -80,9 +80,8 @@ export const loginController = async (
     );
 
     //send tokens
-    res.cookie("refreshToken", refreshToken, refreshCookieOptions);
-    res.status(200).json({ accessToken });
-    // res.json({accessToken, refreshToken});
+    // res.cookie("refreshToken", refreshToken, refreshCookieOptions);
+    return res.status(200).json({ accessToken, refreshToken });
   } catch (err: any) {
     log.error(err);
     return next(err);
@@ -105,13 +104,13 @@ export const getMeController = (
 };
 
 export const refreshAccessTokenController = (
-  req: Request<{}, {}, {}, refreshAccessTokenType["query"]>,
+  req: Request<refreshAccessTokenType["params"]>,
   res: Response,
   next: NextFunction
 ) => {
   try {
     // const refToken = req.cookies.refreshToken; // FIXME
-    const refToken = req.query.refreshToken;
+    const refToken = req.params.refreshToken;
     const secret = config.REFRESH_SECRET;
     try {
       const { valid, expired, payload } = verifyToken(refToken, secret);
@@ -128,7 +127,6 @@ export const refreshAccessTokenController = (
       //send tokens
       res.cookie("refreshToken", refreshToken, refreshCookieOptions);
       res.status(200).json({ accessToken, role });
-
     } catch (err: any) {
       return next(createError(401, "refresh access token", err.message));
     }

@@ -1,14 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { omit } from "lodash";
-import config from "../../utils/config";
 import {
   createUserInput,
   deleteUserInput,
   getUserInput,
   getUsersInput,
-  sendVerificationEmailInput,
   updateUserInput,
-  verifyEmailInput,
 } from "./user.schema";
 import {
   createUser,
@@ -19,9 +16,8 @@ import {
   findAndDeleteUser,
 } from "./user.service";
 import createError from "../../utils/createError";
-import { verifyToken } from "../../utils/jwt";
+
 import log from "../../utils/logger";
-import { sendEmail } from "../../utils/sendEmail";
 
 export const createUserController = async (
   req: Request<{}, {}, createUserInput["body"]>,
@@ -34,10 +30,6 @@ export const createUserController = async (
       return next(createError(409, "email", "email already exists"));
 
     const user = await createUser(req.body);
-
-    // if (process.env.NODE_ENV !== "test") {
-    //   sendEmail(user.id, user.email, "VERIFY");
-    // }
 
     return res.status(201).json(omit(user.toJSON(), ["password", "__v"]));
   } catch (err: any) {

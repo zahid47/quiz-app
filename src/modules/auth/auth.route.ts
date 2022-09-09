@@ -13,7 +13,7 @@ const router = Router();
 router.route("/login").post(validate(loginSchema), loginController);
 router.route("/me").get(protect("user"), getMeController);
 router
-  .route("/refresh")
+  .route("/refresh/:refreshToken")
   .get(validate(refreshAccessTokenSchema), refreshAccessTokenController);
 // router
 //   .route("/reset-pass/:code")

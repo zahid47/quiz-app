@@ -12,8 +12,6 @@ const schema = Type.Object({
   ACCESS_TTL: Type.String(),
   REFRESH_TTL: Type.String(),
   EMAIL_TTL: Type.String(),
-  ETHEREAL_EMAIL: Type.String(),
-  ETHEREAL_PASSWORD: Type.String(),
 });
 
 type Env = Static<typeof schema>;
