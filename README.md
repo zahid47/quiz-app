@@ -50,4 +50,4 @@ Run Tests
 
 ### API Docs (WIP)
 
-- available at "/api/v1/docs"
+- available at "/docs"
