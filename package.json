@@ -9,7 +9,7 @@
     "client": "cd client && yarn dev",
     "all": "concurrently \"yarn dev2\" \"yarn client\"",
     "start": "node build/src/server.js",
-    "build": "tsc",
+    "build": "yarn && tsc",
     "test": "vitest",
     "test-once": "vitest run",
     "prepare": "husky install"
