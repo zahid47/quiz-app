@@ -49,7 +49,7 @@ export default function Quiz({ quiz }: any) {
         </div>
 
         <div className="mt-4 sm:pr-8">
-          <p className="text-sm text-gray-500">{quiz.description}</p>
+          <p className="text-sm text-gray-500 truncate">{quiz.description}</p>
         </div>
 
         <dl className="flex mt-6">

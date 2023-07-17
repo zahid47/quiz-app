@@ -65,6 +65,12 @@ export default function Login() {
             Log into your Account
           </h1>
 
+          <p className="mt-4 text-slate-500">
+            Use the admin account to create quizes
+          </p>
+          <p className="mt-4 text-slate-500">
+            email: <b>admin@quizify.test</b> password: <b>sailormoon42</b>
+          </p>
           <p className="mt-4 text-rose-500">{error}</p>
         </div>
 
