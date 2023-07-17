@@ -5,8 +5,9 @@
   "main": "server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "dev2": "ts-node-dev --respawn --transpile-only src/server.ts",
     "client": "cd client && yarn dev",
-    "all": "concurrently \"yarn dev\" \"yarn client\"",
+    "all": "concurrently \"yarn dev2\" \"yarn client\"",
     "start": "node build/src/server.js",
     "build": "tsc",
     "test": "vitest",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/zahid47/dynamic-quiz#readme",
   "devDependencies": {
+    "ts-node-dev": "^2.0.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@faker-js/faker": "^7.5.0",
