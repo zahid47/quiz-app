@@ -43,6 +43,16 @@ export default function NavBar() {
 
                 {Cookies.get("accessToken") && userState.name ? (
                   <ul className="flex items-center text-sm gap-6">
+                    {user.role === "admin" && (
+                      <li>
+                        <Link
+                          href="/admin/quizes"
+                          className="bg-amber-100 text-amber-700 transition hover:bg-amber-600 hover:text-white block px-3 py-1.5 rounded text-xs font-medium"
+                        >
+                          Create a quiz
+                        </Link>
+                      </li>
+                    )}
                     <li>
                       <button
                         className="bg-amber-100 text-amber-700 transition hover:bg-amber-600 hover:text-white block px-3 py-1.5 rounded text-xs font-medium"
