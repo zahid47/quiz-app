@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "dev2": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "client": "cd client && yarn dev",
     "all": "concurrently \"yarn dev2\" \"yarn client\"",
     "start": "node build/src/server.js",
