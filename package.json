@@ -9,7 +9,7 @@
     "client": "cd client && yarn dev",
     "all": "concurrently \"yarn dev2\" \"yarn client\"",
     "start": "node build/src/server.js",
-    "build": "yarn --ignore-platform && tsc",
+    "build": "yarn --ignore-platform --ignore-engines && tsc",
     "test": "vitest",
     "test-once": "vitest run",
     "prepare": "husky install"
