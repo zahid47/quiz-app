@@ -18,7 +18,7 @@ export default function Quizes({ quizes }: any) {
                 router.push("/admin/quizes/add");
               }}
             >
-              Add Quiz
+              Create Quiz
             </button>
           </div>
 

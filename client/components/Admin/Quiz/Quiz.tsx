@@ -47,17 +47,12 @@ export default function Quiz({ quiz }: any) {
           {dayjs(quiz.updatedAt).fromNow()}
         </td>
         <td className="p-4 text-gray-700 whitespace-nowrap">
-          <button
-            onClick={handleEdit}
-            className=" hover:bg-sky-600 hover:text-white bg-sky-100 text-sky-600 px-3 py-1.5 rounded text-xs font-medium"
-          >
-            <AiFillEdit />
-          </button>
+
           <button
             onClick={handleDelete}
             className="ml-2 hover:bg-rose-600 hover:text-white bg-rose-100 text-rose-600 px-3 py-1.5 rounded text-xs font-medium"
           >
-            <AiFillDelete />
+            Delete
           </button>
         </td>
       </tr>
